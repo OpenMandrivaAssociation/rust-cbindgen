@@ -4,7 +4,7 @@
 %global crate cbindgen
 
 Name:           rust-%{crate}
-Version:        0.18.0
+Version:        0.19.0
 Release:        1%{?dist}
 Summary:        Tool for generating C bindings to Rust code
 

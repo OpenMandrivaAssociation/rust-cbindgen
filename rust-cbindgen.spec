@@ -4,14 +4,16 @@
 %global crate cbindgen
 
 Name:           rust-%{crate}
-Version:        0.19.0
+Version:        0.24.3
 Release:        1%{?dist}
 Summary:        Tool for generating C bindings to Rust code
 
 # Upstream license specification: MPL-2.0
 License:        MPL-2.0
 URL:            https://crates.io/crates/cbindgen
-Source:         %{crates_source}
+Source0:        https://github.com/mozilla/cbindgen/archive/refs/tags/v%{version}/%{crate}-%{version}.tar.gz
+Source1:        vendor.tar.xz  
+Source2:        cargo_config  
 
 ExclusiveArch:  %{rust_arches}
 %if %{__cargo_skip_build}
@@ -114,8 +116,10 @@ which use "clap" feature of "%{crate}" crate.
 %ghost %{cargo_registry}/%{crate}-%{version_no_tilde}/Cargo.toml
 
 %prep
-%autosetup -n %{crate}-%{version_no_tilde} -p1
-%cargo_prep
+%setup -q -T -b 0 -n %{crate}-%{version}
+%setup -q -D -T -a 1 -n %{crate}-%{version}
+mkdir cargo-home
+cp %{SOURCE2} cargo-home/config
 
 %build
 %cargo_build

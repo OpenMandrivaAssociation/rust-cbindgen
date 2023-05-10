@@ -122,10 +122,13 @@ mkdir cargo-home
 cp %{SOURCE2} cargo-home/config
 
 %build
+export CARGO_HOME=`pwd`/cargo-home/
 %cargo_build
 
 %install
-%cargo_install
+export CARGO_HOME=`pwd`/cargo-home/
+# cargo install appends /bin to the path
+cargo install --root=%{buildroot}%{_prefix} --path .
 
 %if %{with check}
 %check

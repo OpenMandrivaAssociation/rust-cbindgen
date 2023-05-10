@@ -74,6 +74,9 @@ export CARGO_HOME=`pwd`/cargo-home/
 export CARGO_HOME=`pwd`/cargo-home/
 # cargo install appends /bin to the path
 cargo install --root=%{buildroot}%{_prefix} --path .
+    
+rm -f %{buildroot}%{_prefix}/.crates.toml
+rm -f %{buildroot}%{_prefix}/.crates2.json  
 
 %if %{with check}
 %check

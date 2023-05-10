@@ -58,63 +58,6 @@ Summary:        %{summary}
 %{_bindir}/cbindgen
 %endif
 
-%package        devel
-Summary:        %{summary}
-BuildArch:      noarch
-Provides:       crate(cbindgen) = 0.18.0
-Requires:       cargo
-Requires:       (crate(heck/default) >= 0.3.0 with crate(heck/default) < 0.4.0)
-Requires:       (crate(indexmap/default) >= 1.0.0 with crate(indexmap/default) < 2.0.0)
-Requires:       (crate(log/default) >= 0.4.0 with crate(log/default) < 0.5.0)
-Requires:       (crate(proc-macro2/default) >= 1.0.0 with crate(proc-macro2/default) < 2.0.0)
-Requires:       (crate(quote/default) >= 1.0.0 with crate(quote/default) < 2.0.0)
-Requires:       (crate(serde/derive) >= 1.0.103 with crate(serde/derive) < 2.0.0)
-Requires:       (crate(serde_json/default) >= 1.0.0 with crate(serde_json/default) < 2.0.0)
-Requires:       (crate(syn/parsing) >= 1.0.3 with crate(syn/parsing) < 2.0.0)
-Requires:       (crate(tempfile/default) >= 3.0.0 with crate(tempfile/default) < 4.0.0)
-Requires:       (crate(toml/default) >= 0.5.0 with crate(toml/default) < 0.6.0)
-
-%description    devel %{_description}
-
-This package contains library source intended for building other packages
-which use "%{crate}" crate.
-
-%files          devel
-%doc README.md
-%{cargo_registry}/%{crate}-%{version_no_tilde}/
-
-%package     -n %{name}+default-devel
-Summary:        %{summary}
-BuildArch:      noarch
-Provides:       crate(cbindgen/default) = 0.18.0
-Requires:       cargo
-Requires:       (crate(clap/default) >= 2.0.0 with crate(clap/default) < 3.0.0)
-Requires:       crate(cbindgen) = 0.18.0
-
-%description -n %{name}+default-devel %{_description}
-
-This package contains library source intended for building other packages
-which use "default" feature of "%{crate}" crate.
-
-%files       -n %{name}+default-devel
-%ghost %{cargo_registry}/%{crate}-%{version_no_tilde}/Cargo.toml
-
-%package     -n %{name}+clap-devel
-Summary:        %{summary}
-BuildArch:      noarch
-Provides:       crate(cbindgen/clap) = 0.18.0
-Requires:       cargo
-Requires:       (crate(clap/default) >= 2.0.0 with crate(clap/default) < 3.0.0)
-Requires:       crate(cbindgen) = 0.18.0
-
-%description -n %{name}+clap-devel %{_description}
-
-This package contains library source intended for building other packages
-which use "clap" feature of "%{crate}" crate.
-
-%files       -n %{name}+clap-devel
-%ghost %{cargo_registry}/%{crate}-%{version_no_tilde}/Cargo.toml
-
 %prep
 %setup -q -T -b 0 -n %{crate}-%{version}
 %setup -q -D -T -a 1 -n %{crate}-%{version}

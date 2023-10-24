@@ -6,8 +6,8 @@
 %global crate cbindgen
 
 Name:           rust-%{crate}
-Version:        0.24.3
-Release:        1%{?dist}
+Version:        0.26.0
+Release:        1
 Summary:        Tool for generating C bindings to Rust code
 
 # Upstream license specification: MPL-2.0

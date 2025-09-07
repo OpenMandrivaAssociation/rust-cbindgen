@@ -15,7 +15,7 @@ License:        MPL-2.0
 URL:            https://crates.io/crates/cbindgen
 Source0:        https://github.com/mozilla/cbindgen/archive/refs/tags/v%{version}/%{crate}-%{version}.tar.gz
 Source1:        vendor.tar.xz
-Source2:        cargo_config
+#Source2:        cargo_config
 
 ExclusiveArch:  %{rust_arches}
 %if %{__cargo_skip_build}
@@ -61,10 +61,15 @@ Summary:        %{summary}
 %endif
 
 %prep
-%setup -q -T -b 0 -n %{crate}-%{version}
-%setup -q -D -T -a 1 -n %{crate}-%{version}
-mkdir cargo-home
-cp %{SOURCE2} cargo-home/config
+tar -zxf %{SOURCE1}
+mkdir -p .cargo
+cat >> .cargo/config.toml << EOF
+[source.crates-io]
+replace-with = "vendored-sources"
+
+[source.vendored-sources]
+directory = "vendor"
+EOF
 
 %build
 export CARGO_HOME=`pwd`/cargo-home/

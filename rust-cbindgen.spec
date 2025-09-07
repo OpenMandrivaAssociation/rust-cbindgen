@@ -13,7 +13,7 @@ Group:          Development/Rust
 
 License:        MPL-2.0
 URL:            https://crates.io/crates/cbindgen
-Source:         %{crates_source}
+Source0:         https://github.com/mozilla/cbindgen/archive/refs/tags/v%{version}/%{crate}-%{version}.tar.gz
 
 ExclusiveArch:  %{rust_arches}
 

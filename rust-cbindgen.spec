@@ -74,7 +74,8 @@ EOF
 
 %build
 #export CARGO_HOME=`pwd`/cargo-home/
-%cargo_build --release
+#cargo_build --release
+cargo build --release
 
 %install
 #export CARGO_HOME=`pwd`/cargo-home/

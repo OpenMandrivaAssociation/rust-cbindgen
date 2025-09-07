@@ -61,10 +61,9 @@ Summary:        %{summary}
 %endif
 
 %prep
-#tar -zxf %{SOURCE1}
-#mkdir -p .cargo
-%autosetup -n %{crate}-%{version} -p 1 -a 1
-%cargo_prep -v vendor
+%autosetup -n %{crate}-%{version} -p1
+tar -zxf %{SOURCE1}
+mkdir -p .cargo
 cat >> .cargo/config.toml << EOF
 [source.crates-io]
 replace-with = "vendored-sources"

@@ -73,11 +73,11 @@ directory = "vendor"
 EOF
 
 %build
-export CARGO_HOME=`pwd`/cargo-home/
+#export CARGO_HOME=`pwd`/cargo-home/
 %cargo_build
 
 %install
-export CARGO_HOME=`pwd`/cargo-home/
+#export CARGO_HOME=`pwd`/cargo-home/
 # cargo install appends /bin to the path
 cargo install --root=%{buildroot}%{_prefix} --path .
     

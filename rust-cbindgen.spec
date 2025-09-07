@@ -18,7 +18,8 @@ Source0:         https://github.com/mozilla/cbindgen/archive/refs/tags/v%{versio
 ExclusiveArch:  %{rust_arches}
 
 BuildRequires:  cargo-rpm-macros >= 24
-BuildRequires:  (crate(clap/default) >= 4.3.0 with crate(clap/default) < 5.0.0~)
+BuildRequires:  (crate(clap/default) 
+#>= 4.3.0 with crate(clap/default) < 5.0.0~)
 BuildRequires:  (crate(heck/default) >= 0.4.0 with crate(heck/default) < 0.5.0~)
 BuildRequires:  (crate(indexmap/default) >= 2.1.0 with crate(indexmap/default) < 3.0.0~)
 BuildRequires:  (crate(log/default) >= 0.4.0 with crate(log/default) < 0.5.0~)
